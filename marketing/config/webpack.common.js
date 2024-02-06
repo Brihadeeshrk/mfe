@@ -9,6 +9,8 @@
  * as well as a plugin for transforming runtime functions (@babel/plugin-transform-runtime).
  * This configuration enables webpack to process JavaScript files using Babel, allowing for the use of modern JavaScript syntax and JSX in the source code.
  */
+const htmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
   module: {
     rules: [
@@ -25,4 +27,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new htmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
 };
