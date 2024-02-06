@@ -1,3 +1,16 @@
+# This is a GitHub Actions workflow file named deploy-container.yml. It is triggered on a push to the master branch, specifically when changes are made to the files in the container directory.
+
+# The workflow has a job called build that runs on the ubuntu-latest environment.
+
+# The steps in the job include:
+
+# Checking out the code using the actions/checkout@v2 action.
+# Installing npm dependencies using npm install.
+# Building the project using npm run build.
+# Using the shinyinc/action-aws-cli@v1.2 action to interact with AWS CLI.
+# Syncing the dist directory with an S3 bucket named ${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest using AWS CLI commands.
+# The environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are provided using GitHub Secrets to securely authenticate with AWS.
+
 name: deploy-container
 
 on:
@@ -14,6 +27,12 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # The actions/checkout@v2 action in GitHub Actions is used to checkout the code from the repository so that it can be used in subsequent steps of the workflow. It fetches the code from the specified repository and sets up the working directory with the contents of the repository.
+
+    # By default, it checks out the default branch (usually master), but it can be configured to checkout a specific branch, tag, or pull request by providing additional inputs to the action.
+
+    # The @v2 specifies the version of the action to use. In this case, it's using version 2 of the action.
 
     steps:
       - uses: actions/checkout@v2
