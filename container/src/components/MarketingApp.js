@@ -8,6 +8,13 @@ const MarketingApp = () => {
 
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
+      /**
+       * This code snippet defines an onNavigate function that takes an object with a pathname property as an argument.
+       * It compares the current pathname with the next pathname, and if they are different, it updates the navigation history to the next pathname.
+       *
+       * @param {Object} nextPathname - the next pathname to navigate to
+       * @return {void}
+       */
       onNavigate: ({ pathname: nextPathname }) => {
         const { pathname } = history.location;
 
@@ -17,10 +24,15 @@ const MarketingApp = () => {
       },
     });
 
+    /**
+     *
+     * This code snippet defines an onParentNavigate function that facilitates container -> subapp communication
+     *
+     */
     history.listen(onParentNavigate);
   }, []);
 
-  return <div ref={ref}>MarketingApp</div>;
+  return <div ref={ref}></div>;
 };
 
 export default MarketingApp;
