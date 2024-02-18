@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import { createMemoryHistory, createBrowserHistory } from "history";
+import App from "./App";
 
 // Mount fn to start the App up
 /**
@@ -11,7 +11,7 @@ import { createMemoryHistory, createBrowserHistory } from "history";
  * @param {onNavigate, onParentNavigate} callbackFns
  * @returns {onParentNavigate} - a function to handle navigation events from container -> subapp
  */
-const mount = (el, { onNavigate, defaultHistory, initialPath, onSignIn }) => {
+const mount = (el, { onSignIn, onNavigate, defaultHistory, initialPath }) => {
   // to run browserHistory in isolation and memoryHistory when running in production
   const history =
     defaultHistory ||
@@ -35,7 +35,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath, onSignIn }) => {
    * @param {object} nextPathname - the next pathname to navigate to
    */
   return {
-    onParentNavigate: ({ pathname: nextPathname }) => {
+    onParentNavigate({ pathname: nextPathname }) {
       const { pathname } = history.location;
 
       if (pathname !== nextPathname) {
@@ -50,9 +50,11 @@ const mount = (el, { onNavigate, defaultHistory, initialPath, onSignIn }) => {
 if (process.env.NODE_ENV === "development") {
   const devRoot = document.querySelector("#_auth-dev-root");
 
-  if (devRoot) mount(devRoot, { defaultHistory: createBrowserHistory() });
+  if (devRoot) {
+    mount(devRoot, { defaultHistory: createBrowserHistory() });
+  }
 }
 
-// we are running through container
+// We are running through container
 // and we should export the mount function
 export { mount };

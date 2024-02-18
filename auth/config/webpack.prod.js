@@ -1,6 +1,5 @@
 const { merge } = require("webpack-merge");
-const moduleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const packageJson = require("../package.json");
 const commonConfig = require("./webpack.common");
 
@@ -11,7 +10,7 @@ const prodConfig = {
     publicPath: "/auth/latest/",
   },
   plugins: [
-    new moduleFederationPlugin({
+    new ModuleFederationPlugin({
       name: "auth",
       filename: "remoteEntry.js",
       exposes: {

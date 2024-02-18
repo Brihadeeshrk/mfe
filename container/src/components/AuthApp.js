@@ -23,15 +23,11 @@ const AuthApp = ({ onSignIn }) => {
           history.push(nextPathname);
         }
       },
-      onSignIn: () => {
-        onSignIn();
-      },
+      onSignIn,
     });
 
     /**
-     *
      * This code snippet defines an onParentNavigate function that facilitates container -> subapp communication
-     *
      */
     history.listen(onParentNavigate);
   }, []);

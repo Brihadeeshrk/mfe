@@ -26,9 +26,7 @@ const MarketingApp = () => {
     });
 
     /**
-     *
      * This code snippet defines an onParentNavigate function that facilitates container -> subapp communication
-     *
      */
     history.listen(onParentNavigate);
   }, []);

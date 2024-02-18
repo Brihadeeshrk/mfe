@@ -12,7 +12,7 @@ const generateClassName = createGenerateClassName({
   productionPrefix: "ma",
 });
 
-const App = ({ history }) => {
+export default ({ history }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
@@ -26,5 +26,3 @@ const App = ({ history }) => {
     </div>
   );
 };
-
-export default App;
