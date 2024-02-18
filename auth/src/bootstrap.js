@@ -16,6 +16,9 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
   const history =
     defaultHistory ||
     createMemoryHistory({
+      // adding this initialEntries and initialPath because it assumed that the initialPath was / which is we had to click on the Signup button twice
+      // once for the memoryBrowserHistory and once for the to change from / -> /auth/signup and the other for it to change from /auth/signup -> /auth/signup where it rendered the component
+      // this way we're passing the initialPath to the mount fn and changing the component as soon as we click on the button
       initialEntries: [initialPath],
     });
 
