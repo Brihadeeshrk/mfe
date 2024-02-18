@@ -11,7 +11,7 @@ import { createMemoryHistory, createBrowserHistory } from "history";
  * @param {onNavigate, onParentNavigate} callbackFns
  * @returns {onParentNavigate} - a function to handle navigation events from container -> subapp
  */
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (el, { onNavigate, defaultHistory, initialPath, onSignIn }) => {
   // to run browserHistory in isolation and memoryHistory when running in production
   const history =
     defaultHistory ||
@@ -27,7 +27,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     history.listen(onNavigate);
   }
 
-  ReactDOM.render(<App history={history} />, el);
+  ReactDOM.render(<App onSignIn={onSignIn} history={history} />, el);
 
   /**
    * Handles navigation when the parent component's pathname changes.
